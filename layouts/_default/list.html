@@ -1,0 +1,57 @@
+{{ define "main" }}
+<div class="container">
+    <nav class="breadcrumb"><a href="/">← All Recipes</a></nav>
+
+    {{ $categoryIcon := "🍽" }}
+    {{ if eq .Title "quick" }}{{ $categoryIcon = "⚡" }}
+    {{ else if eq .Title "main-dishes" }}{{ $categoryIcon = "🍖" }}
+    {{ else if eq .Title "soup" }}{{ $categoryIcon = "🍜" }}
+    {{ else if eq .Title "breakfast" }}{{ $categoryIcon = "🌅" }}
+    {{ else if eq .Title "staple" }}{{ $categoryIcon = "🍚" }}
+    {{ end }}
+
+    <h1 class="section-title" style="margin-top:8px">
+        {{ .Title | humanize }}
+        <span class="count">({{ len .Pages }} dishes)</span>
+    </h1>
+
+    <div class="recipe-grid">
+        {{ range .Pages.ByParam "title" }}
+        <a href="{{ .RelPermalink }}" class="recipe-card">
+            <div class="card-image-wrap">
+                {{ if .Params.image }}
+                <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" class="card-img">
+                {{ else }}
+                <div class="card-image-placeholder">
+                    {{ $initials := "" }}
+                    {{ $words := split .Title " " }}
+                    {{ range first 2 $words }}{{ $initials = print $initials (substr . 0 1) }}{{ end }}
+                    {{ $initials }}
+                </div>
+                {{ end }}
+                <span class="card-category-tag {{ index .Params.categories 0 | default "main-dishes" }}">
+                    {{ $categoryIcon }} {{ .Title | humanize | truncate 1 "" }}
+                </span>
+            </div>
+            <div class="card-body">
+                <h3>{{ .Title }}</h3>
+                <p>{{ .Params.description | truncate 120 }}</p>
+                <div class="card-meta">
+                    <span><span class="meta-icon">⏱</span> {{ .Params.cooktime }}</span>
+                    <span><span class="meta-icon">📊</span> {{ .Params.difficulty }}</span>
+                    <span><span class="meta-icon">👥</span> {{ .Params.servings }} servings</span>
+                </div>
+            </div>
+        </a>
+        {{ end }}
+    </div>
+
+    {{ if not .Pages }}
+    <div style="text-align:center;padding:60px 0;color:var(--text-muted)">
+        <p style="font-size:48px;margin-bottom:16px">🍽</p>
+        <p style="font-size:18px;color:var(--text-soft)">No recipes in this category yet. Check back soon!</p>
+        <a href="/" style="display:inline-block;margin-top:16px;color:var(--accent);font-weight:500">Browse all recipes →</a>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

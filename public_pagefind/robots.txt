@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://greatchinesefood.online/sitemap.xml

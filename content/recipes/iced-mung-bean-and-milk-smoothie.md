@@ -1,0 +1,55 @@
+---
+title: "Iced Mung Bean and Milk Smoothie"
+slug: "iced-mung-bean-and-milk-smoothie"
+date: 2026-06-25
+draft: false
+image: "https://res.cloudinary.com/dgivtfys2/image/upload/v1782360511/foods/%E7%BB%BF%E8%B1%86%E6%B2%99%E7%89%9B%E4%B9%B3%E5%86%B0_%E6%B8%85%E7%83%AD%E8%A7%A3%E6%9A%91_%E5%A4%8F%E6%97%A5%E5%BF%85%E5%A4%87.jpg"
+categories: ["jiacai"]
+difficulty: "高级"
+cookTime: "10分钟"
+servings: "2-3人"
+rating: "3.6"
+reviews: "0"
+tags: ["Chinese 绿豆沙牛乳冰/清热解暑/夏日必备", "Savory Umami", "Home-Style Chinese", "Advanced Cooking", "Lunch Recipe", "Quick 15-Minute Meal", "Chinese Home Cooking", "Easy Dinner", "Asian Recipe", "Mung Beans Recipe"]
+---
+
+A cooling summer treat blending velvety mung bean puree with ice and condensed milk for a creamy, heat-beating drink.
+
+## Ingredients
+
+| Ingredient | Amount |
+|------------|--------|
+| mung beans | 250克 |
+| water | 若干 |
+| condensed milk | 30-60克 |
+| 冰块 |  |
+| mung beans | 550克 |
+
+## Seasonings
+
+- lemon
+- matcha powder
+
+## Instructions
+
+1. mung beans清洗3次以上，洗干净后加淹没过mung beans的water，带着容器一起放入冰箱−18°C冷冻一宿。 冷冻过的mung beans更容易煮开花。
+2. 转天拿出冷冻好的mung beans，water冲一下容器轻松脱模。 冷冻的整块直接放入锅里，再加适量water大火煮开。 煮开后加入lemon汁🍋，固色去腥增香的作用。
+3. 转中火煮20-30分钟，mung beans就全部开花了。
+4. mung beans开花后，转大火煮干汤汁（或者过滤一下）只剩mung beans颗粒（约650克）
+5. 如图，尽量很干巴，很浓稠，冷却放凉。
+6. 取一半煮好的mung beans颗粒（约325克），加入破壁机，加���condensed milk，matcha powder粉，milk🥛 ⚠️⚠️⚠️浓稠度自由调节，先少加milk，不够再加。 ⚠️⚠️⚠️甜度也自由调节，我加30克condensed milk，整体3分甜！！！！3分甜！！！3分甜！！！很淡！ 喜甜加60克，或者80克condensed milk！！！！
+7. 选奶昔/果汁模式，打2分钟，打成mung beans沙。 ⚠️没有破壁机的用绞肉机/榨汁机
+8. 打好如图状态。
+9. 杯子里加入冰块🧊，每杯60克
+10. 倒入milk🥛，每杯60克
+11. 加入剩下的mung beans，平分3份，每杯100克
+12. 倒入mung beans泥，每杯180克
+13. mung beans泥往杯壁上抹点，制造挂壁效果
+14. 🍧mung beans沙牛乳冰，完成✅，超简单 炎炎夏日，必不可少的mung beans沙牛乳冰🧊，太好喝了，清凉解暑必备。
+15. 夏天建议女孩子把奶茶🧋都换成它！ 太好喝了，我喝了好几天
+16. 冰箱冷藏保存1-3天。
+17. 冰冰凉凉，超好喝，喝前摇匀，吨吨吨～～
+
+## Tips
+
+简单好喝，有手就会，记得来交作业哦，帮我点个“好极了”🌟，感谢大家🙏 其他饮品点我头像，搜索🔍主页：饮品 我看有人交作业说不甜！！🙄然后给我打低分！3分甜是很淡！我想喝淡的！我喝mung beans汤都不加sugar，就想喝原味！！喝mung beans原本的清香！ 你不喜欢你就多加condensed milk！！！哪怕喝的时候再加condensed milk到瓶子里搅匀也是可以的呀！！！不能只会给人打低分，就是不会自己灵活调节！！

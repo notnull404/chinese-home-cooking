@@ -1,0 +1,81 @@
+{
+  "_tag": "888004e-20",
+  "_note": "Amazon Associates tracking ID - 888004e-20. Only ASINs verified by user are included.",
+  "_general": [
+    {
+      "name": "Carbon Steel Wok (14 inch)",
+      "price": "$35.99",
+      "rating": "4.6",
+      "img": "https://m.media-amazon.com/images/I/71zL-MHSlxL._AC_SL1500_.jpg",
+      "url": "https://www.amazon.com/dp/B08WRM6ZRG?tag=888004e-20"
+    },
+    {
+      "name": "Bamboo Steamer Set",
+      "price": "$22.99",
+      "rating": "4.5",
+      "img": "https://m.media-amazon.com/images/I/71TjDwhWTJL._AC_SL1500_.jpg",
+      "url": "https://www.amazon.com/dp/B09H6Z1LQD?tag=888004e-20"
+    },
+    {
+      "name": "Dried Chili Peppers (1lb)",
+      "price": "$13.99",
+      "rating": "4.6",
+      "img": "https://m.media-amazon.com/images/I/81YmLSp-f-L._AC_SL1500_.jpg",
+      "url": "https://www.amazon.com/dp/B0B3W7K9QV?tag=888004e-20"
+    }
+  ],
+  "_tools": {
+    "hong-shao-rou-red-braised-pork-belly": [
+      {
+        "name": "Carbon Steel Wok",
+        "price": "$35.99",
+        "rating": "4.6",
+        "img": "https://m.media-amazon.com/images/I/71zL-MHSlxL._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B08WRM6ZRG?tag=888004e-20"
+      }
+    ],
+    "kung-pao-chicken": [
+      {
+        "name": "Carbon Steel Wok",
+        "price": "$35.99",
+        "rating": "4.6",
+        "img": "https://m.media-amazon.com/images/I/71zL-MHSlxL._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B08WRM6ZRG?tag=888004e-20"
+      },
+      {
+        "name": "Dried Chili Peppers (1lb)",
+        "price": "$13.99",
+        "rating": "4.6",
+        "img": "https://m.media-amazon.com/images/I/81YmLSp-f-L._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B0B3W7K9QV?tag=888004e-20"
+      }
+    ],
+    "mapo-tofu": [
+      {
+        "name": "Carbon Steel Wok",
+        "price": "$35.99",
+        "rating": "4.6",
+        "img": "https://m.media-amazon.com/images/I/71zL-MHSlxL._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B08WRM6ZRG?tag=888004e-20"
+      }
+    ],
+    "sweet-and-sour-ribs": [
+      {
+        "name": "Carbon Steel Wok",
+        "price": "$35.99",
+        "rating": "4.6",
+        "img": "https://m.media-amazon.com/images/I/71zL-MHSlxL._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B08WRM6ZRG?tag=888004e-20"
+      }
+    ],
+    "corn-and-pork-rib-soup-rice-cooker": [
+      {
+        "name": "Bamboo Steamer Set",
+        "price": "$22.99",
+        "rating": "4.5",
+        "img": "https://m.media-amazon.com/images/I/71TjDwhWTJL._AC_SL1500_.jpg",
+        "url": "https://www.amazon.com/dp/B09H6Z1LQD?tag=888004e-20"
+      }
+    ]
+  }
+}

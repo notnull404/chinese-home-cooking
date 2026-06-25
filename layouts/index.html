@@ -1,0 +1,151 @@
+{{ define "main" }}
+{{ $allRecipes := where .Site.RegularPages "Section" "recipes" }}
+
+{{/* ── HERO ── */}}
+<section class="hero">
+    {{ partial "barrage" . }}
+    <div class="hero-inner">
+        <div class="hero-search-wrap" id="search">
+        </div>
+        <p class="hero-tagline">Eat well, live well. <em>— Great Chinese Food</em></p>
+    </div>
+</section>
+
+<div class="container">
+    {{/* ── CATEGORY STRIP (33 cats + 1300 subs) ── */}}
+    {{ $catOrder := slice "remen" "roulei" "dan_nai" "yulei" "shuichan" "shucai" "doulei" "guopin" "wugu" "yaoshi" "tiaowei" "zhushi" "tang_geng" "liangcai" "xiaochi" "tianpin" "yinshi" "caixi" "pengren" "kouwei" "changhe" "jieri" "jiqiao" "qiju" "yanla" "ganhuo" "qingshi" "yexiao" "xiafan" "lingshi" "lanren" "chuangyi" "sushe" }}
+    {{ $catData := dict }}
+    {{ range $id := $catOrder }}{{ $cat := index $.Site.Data.categories $id }}{{ $catData = merge $catData (dict $id $cat.subs) }}{{ end }}
+    <script>
+    var catSubs = JSON.parse('{{ $catData | jsonify }}');
+    </script>
+
+    <div class="cat-section">
+        <div class="cat-grid" id="cat-grid">
+            {{ range $i, $id := $catOrder }}
+            {{ $cat := index $.Site.Data.categories $id }}
+            <div class="cat-chip" data-id="{{ $id }}" data-name="{{ $cat.name | lower }}" onclick="selectCat('{{ $id }}', this)">
+                <span class="cat-chip-label">{{ $cat.name }}</span>
+            </div>
+            {{ end }}
+        </div>
+
+        {{/* Subcategory strip */}}
+        <div class="sub-strip-wrap" id="sub-strip-wrap" style="display:none">
+            <div class="sub-strip" id="sub-strip"></div>
+        </div>
+    </div>
+
+    {{/* ── RECIPE GRID ── */}}
+    <div class="recipe-section" id="results-section">
+        <div class="section-header">
+            <h2 id="results-title">Recommended Recipes <span class="count-badge">{{ len $allRecipes }} dishes</span></h2>
+        </div>
+        <div class="recipe-grid" id="recipe-grid" data-pagefind-body>
+            {{ range $allRecipes }}
+            {{ $r := .Params.rating | default "4.5" }}
+            {{ $t := .Params.cooktime }}
+            {{ $isQuick := or (hasPrefix $t "10") (hasPrefix $t "15") (hasPrefix $t "20") (hasPrefix $t "25") (hasPrefix $t "5") (hasPrefix $t "30") }}
+            <a href="{{ .RelPermalink }}" class="recipe-card"
+               data-title="{{ .Title | lower }}" data-desc="{{ .Params.description | lower }}"
+               data-cats="{{ delimit .Params.categories "," | lower }}" data-time="{{ $t }}" data-diff="{{ .Params.difficulty | lower }}" data-rating="{{ $r }}">
+                <div class="card-image-wrap">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" class="card-img">
+                    {{ else }}
+                    <div class="card-image-placeholder">{{ $words := split .Title " " }}{{ range first 2 $words }}{{ substr . 0 1 }}{{ end }}</div>
+                    {{ end }}
+                    <div class="card-tags-top">
+                        {{ if $isQuick }}<span class="card-tag tag-quick">⚡ Quick</span>{{ end }}
+                        {{ $catId := index .Params.categories 0 }}{{ $catInfo := index $.Site.Data.categories $catId }}{{ if $catInfo }}<span class="card-tag tag-cat">{{ $catInfo.name }}</span>{{ else }}<span class="card-tag tag-cat">{{ $catId | humanize }}</span>{{ end }}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>{{ .Title }}</h3>
+                    <div class="card-rating-row">
+                        <div class="card-stars" data-rating="{{ $r }}">
+                            <span class="c-star-bg">★★★★★</span>
+                            <span class="c-star-fill" style="--rating:{{ $r }}">★★★★★</span>
+                        </div>
+                        <span class="card-rating-num">{{ $r }}</span>
+                    </div>
+                    <p>{{ .Params.description | truncate 90 }}</p>
+                    <div class="card-footer-row">
+                        <span class="card-foot-item"><i data-lucide="timer" width="12" height="12"></i> {{ $t }}</span>
+                        <span class="card-foot-item"><i data-lucide="gauge" width="12" height="12"></i> {{ .Params.difficulty }}</span>
+                        <span class="card-foot-item"><i data-lucide="users" width="12" height="12"></i> {{ .Params.servings }}</span>
+                    </div>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+        <div class="no-results" id="no-results" style="display:none">
+            <div class="no-results-icon">🔍</div>
+            <p>No recipes found matching "<span id="search-term"></span>"</p>
+        </div>
+        <div class="pagination" id="pagination"></div>
+        <div id="search-results" style="display:none"></div>
+    </div>
+
+    {{/* ─── HOMEPAGE TOOLS ─── */}}
+    {{ $homeTools := .Site.Data.tools._general }}
+    </div>
+</div>
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+let pagefindUI = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    pagefindUI = new PagefindUI({
+        element: "#search",
+        showImages: false,
+        showSubResults: false,
+        resetStyles: true,
+        autofocus: false,
+        debounceTimeoutMs: 200,
+    });
+
+    const input = document.querySelector('.pagefind-ui__search-input');
+    const results = document.getElementById('search-results');
+    const recipeGrid = document.getElementById('recipe-grid');
+    const sectionHeader = document.querySelector('.section-header');
+    const pagination = document.getElementById('pagination');
+    const noResults = document.getElementById('no-results');
+
+    results.style.display = 'none';
+
+    input.addEventListener('input', function() {
+        const q = this.value.trim();
+        if (q.length > 0) {
+            recipeGrid.style.display = 'none';
+            sectionHeader.style.display = 'none';
+            pagination.style.display = 'none';
+            noResults.style.display = 'none';
+            results.style.display = 'block';
+            pagefindUI.search(q);
+        } else {
+            recipeGrid.style.display = '';
+            sectionHeader.style.display = '';
+            pagination.style.display = '';
+            noResults.style.display = 'none';
+            results.style.display = 'none';
+        }
+    });
+
+    // Read search from URL
+    const params = new URLSearchParams(window.location.search);
+    const searchParam = params.get('search');
+    if (searchParam) {
+        input.value = searchParam;
+        recipeGrid.style.display = 'none';
+        sectionHeader.style.display = 'none';
+        pagination.style.display = 'none';
+        results.style.display = 'block';
+        setTimeout(() => pagefindUI.search(searchParam), 500);
+    }
+});
+</script>
+{{ end }}

@@ -1,0 +1,89 @@
+{{ define "main" }}
+<div class="container">
+    <nav class="breadcrumb"><a href="/">← Home</a></nav>
+
+    <h1 class="section-title" style="margin-top:8px">
+        Browse by Category
+        <span class="count">Explore recipes by type</span>
+    </h1>
+
+    <div class="category-gallery">
+        {{ $catData := slice }}
+        {{ $catData = $catData | append (dict "id" "main-dishes" "icon" "🍖" "name" "Main Dishes" "desc" "经典家常菜，最受欢迎的中餐主菜" "subs" (slice "红烧肉" "鱼香肉丝" "麻婆豆腐" "宫保鸡丁" "糖醋排骨" "可乐鸡翅" "家常豆腐" "蒜蓉粉丝蒸虾" "青椒肉丝")) }}
+        {{ $catData = $catData | append (dict "id" "quick" "icon" "⚡" "name" "Quick Meals" "desc" "10-20分钟快手菜，上班族必备" "subs" (slice "番茄炒蛋" "酸辣土豆丝" "蒜蓉西兰花")) }}
+        {{ $catData = $catData | append (dict "id" "soup" "icon" "🍜" "name" "Soups" "desc" "暖心暖胃的各式汤品" "subs" (slice "紫菜蛋花汤" "玉米排骨汤")) }}
+        {{ $catData = $catData | append (dict "id" "breakfast" "icon" "🌅" "name" "Breakfast" "desc" "早餐吃好，一天都好" "subs" (slice "皮蛋瘦肉粥")) }}
+        {{ $catData = $catData | append (dict "id" "staple" "icon" "🍚" "name" "Staples" "desc" "主食一锅出，简单又满足" "subs" (slice "蛋炒饭")) }}
+    </div>
+
+    {{ $site := .Site }}
+    {{ $allRecipes := where $site.RegularPages "Section" "recipes" }}
+    {{ range $cat := $catData }}
+    {{ $count := 0 }}{{ range $allRecipes }}{{ if in .Params.categories $cat.id }}{{ $count = add $count 1 }}{{ end }}{{ end }}
+    <div class="cat-section" id="cat-{{ $cat.id }}">
+        <div class="cat-section-header">
+            <h2 class="cat-section-title">{{ $cat.icon }} {{ $cat.name }}</h2>
+            <span class="cat-section-count">{{ $count }} recipes</span>
+            <a href="/categories/{{ $cat.id }}/" class="cat-section-link">View all →</a>
+        </div>
+        <p class="cat-section-desc">{{ $cat.desc }}</p>
+        
+        {{ if $cat.subs }}
+        <div class="cat-sub-tags">
+            {{ range $cat.subs }}
+            <a href="/categories/{{ $cat.id }}/" class="cat-sub-tag">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        <div class="recipe-grid">
+            {{ range where $site.RegularPages "Section" "recipes" }}
+            {{ if in .Params.categories $cat.id }}
+            <a href="{{ .RelPermalink }}" class="recipe-card">
+                <div class="card-image-wrap">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy" class="card-img">
+                    {{ else }}
+                    <div class="card-image-placeholder">
+                        {{ $initials := "" }}
+                        {{ $words := split .Title " " }}
+                        {{ range first 2 $words }}{{ $initials = print $initials (substr . 0 1) }}{{ end }}
+                        {{ $initials }}
+                    </div>
+                    {{ end }}
+                </div>
+                <div class="card-body">
+                    <h3>{{ .Title }}</h3>
+                    <p>{{ .Params.description | truncate 100 }}</p>
+                    <div class="card-meta">
+                        <span><span class="meta-icon">⏱</span> {{ .Params.cooktime }}</span>
+                        <span><span class="meta-icon">📊</span> {{ .Params.difficulty }}</span>
+                    </div>
+                </div>
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+
+<style>
+.category-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 48px; }
+.cat-card { background: #fff; border-radius: 16px; padding: 24px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.06); text-decoration: none; color: #2c2c2c; transition: all .2s; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+.cat-card-icon { font-size: 36px; margin-bottom: 8px; }
+.cat-card-name { font-family: Georgia,serif; font-size: 18px; font-weight: 700; color: #1a1a1a; }
+.cat-card-count { font-size: 13px; color: #999; margin-top: 4px; }
+.cat-section { margin-bottom: 48px; }
+.cat-section-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.cat-section-title { font-family: Georgia,serif; font-size: 26px; font-weight: 700; color: #1a1a1a; margin: 0; }
+.cat-section-count { font-size: 14px; color: #999; }
+.cat-section-link { margin-left: auto; font-size: 14px; color: #c0392b; font-weight: 500; text-decoration: none; }
+.cat-section-link:hover { color: #e67e22; }
+.cat-section-desc { font-size: 15px; color: #666; margin-bottom: 12px; }
+.cat-sub-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.cat-sub-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; background: #f5f0eb; color: #555; text-decoration: none; transition: all .15s; }
+.cat-sub-tag:hover { background: #c0392b; color: #fff; }
+</style>
+{{ end }}

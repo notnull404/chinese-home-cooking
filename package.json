@@ -1,0 +1,23 @@
+{
+  "name": "chineserecipes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/notnull404/chinese-home-cooking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/notnull404/chinese-home-cooking/issues"
+  },
+  "homepage": "https://github.com/notnull404/chinese-home-cooking#readme",
+  "description": "",
+  "dependencies": {
+    "pg": "^8.22.0"
+  }
+}
